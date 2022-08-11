@@ -1,6 +1,7 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
+import RestaurantCard from "./RestaurantCard";
 
 const FeaturedRow = ({ title, description, id }) => {
   return (
@@ -16,7 +17,55 @@ const FeaturedRow = ({ title, description, id }) => {
         showsHorizontalScrollIndicator={false}
         className='pt-4'
       >
-        
+        {/* Restaurants card */}
+        <RestaurantCard
+          id='1'
+          title='Restaurant 1'
+          imgUrl='https://links.papareact.com/gn7'
+          rating='4.5'
+          genre='Italian'
+          short_description='Lorem ipsum dolor sit amet,'
+          dishes={["Dish 1", "Dish 2", "Dish 3"]}
+          address='Lorem ipsum dolor'
+          log='-33.865'
+          lat='33.865'
+        />
+        <RestaurantCard
+          id='1'
+          title='Restaurant 1'
+          imgUrl='https://links.papareact.com/gn7'
+          rating='4.5'
+          genre='Italian'
+          short_description='Lorem ipsum dolor sit amet,'
+          dishes={["Dish 1", "Dish 2", "Dish 3"]}
+          address='Lorem ipsum dolor'
+          log='-33.865'
+          lat='33.865'
+        />
+        <RestaurantCard
+          id='1'
+          title='Restaurant 1'
+          imgUrl='https://links.papareact.com/gn7'
+          rating='4.5'
+          genre='Italian'
+          short_description='Lorem ipsum dolor sit amet,'
+          dishes={["Dish 1", "Dish 2", "Dish 3"]}
+          address='Lorem ipsum dolor'
+          log='-33.865'
+          lat='33.865'
+        />
+        <RestaurantCard
+          id='1'
+          title='Restaurant 1'
+          imgUrl='https://links.papareact.com/gn7'
+          rating='4.5'
+          genre='Italian'
+          short_description='Lorem ipsum dolor sit amet,'
+          dishes={["Dish 1", "Dish 2", "Dish 3"]}
+          address='Lorem ipsum dolor'
+          log='-33.865'
+          lat='33.865'
+        />
       </ScrollView>
     </View>
   );
