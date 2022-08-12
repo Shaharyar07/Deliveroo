@@ -16,13 +16,32 @@ import {
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import client from "../sanity";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [featuredCategories, setFeaturedCategories] = React.useState([]);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+  }, []);
+  React.useEffect(() => {
+    client
+      .fetch(
+        `
+    *[_type == "featured"] {
+      ...,
+      restaurants[]-> {
+        ...,
+        dishes[]-> 
+      }
+    }
+    `
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
   }, []);
 
   return (
@@ -64,21 +83,14 @@ const HomeScreen = () => {
         <Categories />
 
         {/* Featured */}
-        <FeaturedRow
-          id='1'
-          title='Featured'
-          description='Paid placements from our partners'
-        />
-        <FeaturedRow
-          id='2'
-          title='Tasty Discounts'
-          description="Everyone's favorite food is on sale"
-        />
-        <FeaturedRow
-          id='3'
-          title='Offers near you'
-          description='Find the best deals near you'
-        />
+        {featuredCategories?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+            title={category.title}
+            description={category.short_description}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
